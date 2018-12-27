@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Segment Easy Uploader - Загружай сегменты для сервиса Яндекс.Аудитории!</title>
     <meta name="description" content="Загружай сегменты из файлов, содержих MAC-адреса устройств, для сервиса Яндекс.Аудитории.">
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/main.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
