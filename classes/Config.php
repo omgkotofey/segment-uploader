@@ -1,11 +1,10 @@
 <?php
 
 /**
- * Configuration getter class
+ * Класс-геттер для конфигурации
  */
 class Config
 {
-    // this is public to allow better Unit Testing
     public static $config;
     
     public static function get($key)
