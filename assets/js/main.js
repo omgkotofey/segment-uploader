@@ -65,18 +65,18 @@ $(document).ready(function() {
 		// console.log(fileType);
 		var imageName = file.name;
 	
-		var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+		var isGood = (/\.(?=txt)/gi).test(imageName);
 		if (isGood) {
 			document.getElementById('start').classList.add("hidden");
 			document.getElementById('response').classList.remove("hidden");
-			document.getElementById('notimage').classList.add("hidden");
+			document.getElementById('nottxt').classList.add("hidden");
 			// Thumbnail Preview
 			document.getElementById('file-image').classList.remove("hidden");
-			document.getElementById('file-image').src = URL.createObjectURL(file);
+			document.getElementById('file-image').src = 'assets/images/icon-txt.png';
 		}
 		else {
 			document.getElementById('file-image').classList.add("hidden");
-			document.getElementById('notimage').classList.remove("hidden");
+			document.getElementById('nottxt').classList.remove("hidden");
 			document.getElementById('start').classList.remove("hidden");
 			document.getElementById('response').classList.add("hidden");
 			document.getElementById("file-upload-form").reset();
@@ -115,6 +115,7 @@ $(document).ready(function() {
 	
 			// File received / failed
 			xhr.onreadystatechange = function(e) {
+				pBar.style.display = 'none';
 				if (xhr.readyState == 4) {
 				// Everything is good!
 	
