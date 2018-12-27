@@ -12,6 +12,7 @@ html,
 body {
 	height: 100%;
 	text-align: center;
+	font-family: sans-serif;
 }
 
 body {
@@ -55,7 +56,6 @@ p {
 	background: #fff;
 	border-radius: 7px;
 	border: 3px solid #eee;
-	font-family: sans-serif;
 	transition: all .2s ease;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -95,8 +95,6 @@ p {
 }
 
 .uploader #response {
-	float: left;
-	clear: both;
 	width: 100%;
 }
 
@@ -172,6 +170,7 @@ p {
 
 .uploader .btn {
 	display: inline-block;
+	min-width: 150px;
 	margin: .5rem .5rem 1rem .5rem;
 	clear: both;
 	font-family: inherit;
@@ -190,4 +189,16 @@ p {
 	background: #ffd85d;
 	border-color: #ffd85d;
 	cursor: pointer;
+}
+
+#file-send-btn{
+	display: none;
+	margin-top: 25px;
+	transition: ease 0.3s;
+}
+
+#file-send-btn:hover{
+	background-color: #fd0019;
+	border-color: #fd0019;
+	color: #fff;
 }

@@ -102,8 +102,8 @@ $(document).ready(function() {
 		function uploadFile(file) {
 	
 		var xhr = new XMLHttpRequest(),
-			fileInput = document.getElementById('class-roster-file'),
 			pBar = document.getElementById('file-progress'),
+			sendBtn = document.getElementById('file-send-btn'),
 			fileSizeLimit = 1024; // In MB
 		if (xhr.upload) {
 			// Check if file is less than x MB
@@ -116,6 +116,7 @@ $(document).ready(function() {
 			// File received / failed
 			xhr.onreadystatechange = function(e) {
 				pBar.style.display = 'none';
+				sendBtn.style.display = 'inline-block';
 				if (xhr.readyState == 4) {
 				// Everything is good!
 	

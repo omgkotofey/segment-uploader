@@ -17,7 +17,7 @@
         для конвертации их в новый сегмент</p>
 
     <!-- Upload  -->
-    <form id="file-upload-form" class="uploader">
+    <form id="file-upload-form" action="file_downloader.php" class="uploader">
         <input id="file-upload" type="file" name="fileUpload" accept=".txt" />
 
         <label for="file-upload" id="file-drag">
@@ -35,6 +35,7 @@
                 </progress>
             </div>
         </label>
+        <span id="file-send-btn" class="btn btn-primary">Создать сегмент</span>
     </form>
 </body>
 
