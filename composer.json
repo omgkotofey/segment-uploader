@@ -1,0 +1,23 @@
+{
+    "name": "Segment Easy Upload",
+    "description": "Загрузчик сегментов для сервиса Яндекс.Аудиторий",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "omgkotofey",
+            "email": "omgkotofey@gmail.ru"
+        }
+    ],
+    "config": {
+            "vendor-dir": "vendor"
+        },
+    "autoload": {
+        "psr-4": {
+             "Classes\\": "classes/"
+        }
+    },
+    "require": {
+        "php":">=5.5.0"
+        }
+}
