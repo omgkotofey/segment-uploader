@@ -1,5 +1,8 @@
 <?php
 
+
+namespace Classes;
+
 /**
  * Класс-геттер для конфигурации
  */
@@ -11,9 +14,9 @@ class Config
     {
        
         if (!self::$config) {
-            $config_file = '../config/config.php';
+            $config_file = 'config/config.php';
             if (!file_exists($config_file)) {
-                throw new Exception('Файл конфигурации не найден');
+                throw new \Exception('Файл конфигурации не найден');
             }
             self::$config = require $config_file;
         }

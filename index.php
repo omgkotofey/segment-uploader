@@ -17,9 +17,8 @@
 
 <body>
     <h2>Загружай сегменты для Яндекс.Аудиторий!</h2>
-    <p class="lead">Загрузи .txt файл <b>содержащий MAC-адреса устройств</b><br>
+    <p class="lead">Загрузи .txt файл <b>содержащий MAC-адреса устройств</b><br class="mob-hide">
         для конвертации их в новый сегмент</p>
-
     <!-- Upload  -->
     <form id="file-upload-form" action="file_downloader.php" class="uploader">
         <input id="file-upload" type="file" name="fileUpload" accept=".txt" />
@@ -29,7 +28,7 @@
             <div id="start">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 <div>Выберите файл или перетащите его в это поле</div>
-                <div id="nottxt" class="hidden">К загрузке принимаются только .txt файлы</div>
+                <div id="error-message" class="hidden">К загрузке принимаются только .txt файлы</div>
                 <span id="file-upload-btn" class="btn btn-primary">Выбрать файл</span>
             </div>
             <div id="response" class="hidden">

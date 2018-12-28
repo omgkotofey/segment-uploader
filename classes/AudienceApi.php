@@ -1,7 +1,9 @@
 <?php 
 
+namespace Classes;
+
 /**
- * 
+ *  Класс, занимающийся отправкой отзывов к API Яндекс.Аудиторий
  */
 class AudienceApi 
 {

@@ -118,7 +118,7 @@ p {
 	display: none;
 }
 
-.uploader #nottxt {
+.uploader #error-message {
 	display: block;
 	float: left;
 	clear: both;
@@ -126,7 +126,7 @@ p {
 	color: #fb0022;
 }
 
-.uploader #nottxt.hidden {
+.uploader #error-message.hidden {
 	display: none;
 }
 
@@ -201,4 +201,10 @@ p {
 	background-color: #fd0019;
 	border-color: #fd0019;
 	color: #fff;
+}
+
+@media screen and (max-width: 600px){
+	.mob-hide{
+		display: none;
+	}
 }
