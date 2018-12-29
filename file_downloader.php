@@ -3,6 +3,7 @@
 require_once 'vendor/autoload.php';
 
 use Classes\Config;
+use Classes\MacFile;
 
 // файл обязательно деолжен придти и быть текстовым
 if (!empty($_FILES) && ($_FILES['mac-file']['type'] == 'text/plain')){
@@ -15,7 +16,14 @@ if (!empty($_FILES) && ($_FILES['mac-file']['type'] == 'text/plain')){
 
 	// возвращаем JSON
 	if (move_uploaded_file($_FILES['mac-file']['tmp_name'], $upload_file_path)) {
-		echo json_encode(['result' => 'success', 'message' => 'Файл загружен успешно', 'filename' => $unique_upload_filename]);
+		try {
+			$uploaded_file = new MacFile($upload_file_path);
+			$mac_found = $uploaded_file->getMacCount();
+			echo json_encode(['result' => 'success', 'message' => 'Файл загружен успешно', 'filename' => $unique_upload_filename, 'mac_count' => $mac_found]);
+		} catch (\Exception $e) {
+			echo json_encode(['result' => 'error', 'message' => $e->getMessage()]);
+		}
+		
 	} 
 	else {
 		echo json_encode(['result' => 'error', 'message' => 'Невозможно загрузить данный файл. Возможно он поврежден или некорректен']);

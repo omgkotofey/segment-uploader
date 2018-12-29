@@ -24,21 +24,25 @@
         <input id="file-upload" type="file" name="fileUpload" accept=".txt" />
 
         <label for="file-upload" id="file-drag">
-            <img id="file-image" src="#" alt="Preview" class="hidden">
             <div id="start">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 <div>Выберите файл или перетащите его в это поле</div>
-                <div id="error-message" class="hidden">К загрузке принимаются только .txt файлы</div>
+                <div id="error-message" class="hidden"></div>
                 <span id="file-upload-btn" class="btn btn-primary">Выбрать файл</span>
             </div>
-            <div id="response" class="hidden">
-                <div id="messages"></div>
-                <progress class="progress" id="file-progress" value="0">
-                    <span>0</span>%
-                </progress>
+            <div id="file-wrapper">
+                <img id="file-remove" src="assets/images/delete-sign.png" alt="Remove" class="hidden" title="Удалить файл">
+                <img id="file-image" src="#" alt="Preview" class="hidden">
+                <div id="response" class="hidden">
+                    <div id="file-name"></div>
+                    <div id="messages"></div>
+                    <progress class="progress" id="file-progress" value="0">
+                        <span>0</span>%
+                    </progress>
+                </div>
             </div>
         </label>
-        <span id="file-send-btn" class="btn btn-primary">Создать сегмент</span>
+        <span id="file-send-btn" class="btn btn-primary hidden">Создать сегмент</span>
     </form>
 </body>
 

@@ -9,9 +9,11 @@ $(document).ready(function () {
 			console.log("Upload Initialised");
 
 			var fileSelect = document.getElementById('file-upload'),
-				fileDrag = document.getElementById('file-drag');
+				fileDrag = document.getElementById('file-drag'),
+				fileRemove = document.getElementById('file-remove');
 
 			fileSelect.addEventListener('change', fileSelectHandler, false);
+			fileRemove.addEventListener('click', removeFile, false);
 
 			// Is XHR2 available?
 			var xhr = new XMLHttpRequest();
@@ -21,6 +23,13 @@ $(document).ready(function () {
 				fileDrag.addEventListener('dragleave', fileDragHover, false);
 				fileDrag.addEventListener('drop', fileSelectHandler, false);
 			}
+		}
+
+		function removeFile(e) { 
+			e.stopPropagation();
+			e.preventDefault();
+			reloadForm();
+			
 		}
 
 		function fileDragHover(e) {
@@ -58,23 +67,22 @@ $(document).ready(function () {
 			// Response
 			var m = document.getElementById('error-message');
 			m.innerHTML = msg;
-			reloadForm();
 		}
 
 		// Form reloading
 		function reloadForm(){
 			document.getElementById('file-image').classList.add("hidden");
+			document.getElementById('file-remove').classList.add("hidden");
 			document.getElementById('error-message').classList.remove("hidden");
 			document.getElementById('start').classList.remove("hidden");
 			document.getElementById('response').classList.add("hidden");
+			document.getElementById('file-send-btn').classList.add("hidden");
 			document.getElementById("file-upload-form").reset();
 		}
 
 		function parseFile(file) {
 
-			output(
-				'<strong>' + encodeURI(file.name) + '</strong>'
-			);
+			document.getElementById('file-name').innerHTML = '<strong>' + encodeURI(file.name) + '</strong>';
 
 			var isTXT = (/\.(?=txt)/gi).test(file.name) && (file.type == 'text/plain');
 			if (isTXT) {
@@ -83,8 +91,9 @@ $(document).ready(function () {
 				document.getElementById('error-message').classList.add("hidden");
 				document.getElementById('file-image').classList.remove("hidden");
 				document.getElementById('file-image').src = 'assets/images/icon-txt.png';
+				document.getElementById('file-remove').classList.remove("hidden");
 			} else {
-				reloadForm();
+				outputError('К загрузке принимаются только .txt файлы');
 			}
 		}
 
@@ -132,22 +141,24 @@ $(document).ready(function () {
 						returnedData = JSON.parse(responce);
 						if (returnedData['result'] == 'success'){
 							pBar.style.display = 'none';
-							sendBtn.style.display = 'inline-block';
+							sendBtn.classList.remove("hidden");
+							output('MAC-адреса: ' + returnedData['mac_count'] + ' шт.');
 						}
 						else if (returnedData['result'] == 'error'){
-							output(returnedData['message']);
+							outputError(returnedData['message']);
 						}
 						else{
-							output('Произошла неизвестная ошибка');
+							outputError('Произошла неизвестная ошибка');
 						}
 					},
 					error: function (thrownError) {
-						console.log(thrownError);
+						console.log(thrownError.responseText);
+						outputError('Произошла неизвестная ошибка');
 					},
 				});
 			} 
 			else{
-				output('Объем загружаемого файла не должен превышать '+ fileSizeLimit + ' Мб).');
+				outputError('Объем загружаемого файла не должен превышать '+ fileSizeLimit + ' Мб).');
 			}
 		}
 

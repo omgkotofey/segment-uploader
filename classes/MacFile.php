@@ -16,7 +16,7 @@ class MacFile
 	/**
 	 * Контруктор класса
 	 *
-	 * @param String $file_name имя/путь файла
+	 * @param String $file_name путь к файлу
 	 * @param String $mime_type MIME-тип файла (если не передан - определеяется автоматически)
 	 * @throws Exception
 	 **/
@@ -40,7 +40,7 @@ class MacFile
 				if($content!==false){
 					// Сохраняем содержимое файла
 					$this->content = $content;
-					getMacArrayFromContent();
+					$this->getMacArrayFromContent();
 				}
 				else{
 					throw new Exception('Не удалось прочесть содержимое файла "'.$file_name.'". Возможно он пуст.');
@@ -63,7 +63,7 @@ class MacFile
 			$this->mime = $mime;
 			// Сохраняем в свойстве класса содержимое файла
 			$this->content = $content;
-			getMacArrayFromContent();
+			$this->getMacArrayFromContent();
 		};
 	}
 
@@ -73,7 +73,7 @@ class MacFile
 	 * @throws Exception
 	 **/
 	private function getMacArrayFromContent() { 
-		if($content!==false){
+		if(!empty($this->content)){
 			// Сохраняем все найденные в файле адреса
 			preg_match_all('/([a-fA-F0-9]{2}[:|\-]?){6}/', $this->content, $mac_array);
 			$this->mac_array = array_unique($mac_array[0]);
@@ -128,6 +128,15 @@ class MacFile
 	 **/
 	public function getMacArray() { 
 		return $this->mac_array;
+	}
+
+	/**
+	 *  Метод возвращает количество mac-адресов в содержимом
+	 *
+	 * @return Array 
+	 **/
+	public function getMacCount() { 
+		return count($this->mac_array);
 	}
 	
 	/**

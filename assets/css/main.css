@@ -84,8 +84,8 @@ p {
 	width: 100%;
 }
 
-.uploader #start.hidden {
-	display: none;
+.hidden {
+	display: none !important;
 }
 
 .uploader #start i.fa {
@@ -98,12 +98,26 @@ p {
 	width: 100%;
 }
 
-.uploader #response.hidden {
-	display: none;
-}
-
 .uploader #response #messages {
 	margin-bottom: .5rem;
+}
+
+.uploader #file-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.uploader #file-remove {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 15px;
+	cursor: pointer;
+	transition: ease 0.3s;
+}
+
+.uploader #file-remove:hover{
+	transform: scale(1.1);
 }
 
 .uploader #file-image {
@@ -114,9 +128,7 @@ p {
 	max-width: 100px;
 }
 
-.uploader #file-image.hidden {
-	display: none;
-}
+
 
 .uploader #error-message {
 	display: block;
@@ -126,9 +138,6 @@ p {
 	color: #fb0022;
 }
 
-.uploader #error-message.hidden {
-	display: none;
-}
 
 .uploader progress,
 .uploader .progress {
@@ -171,7 +180,7 @@ p {
 .uploader .btn {
 	display: inline-block;
 	min-width: 150px;
-	margin: .5rem .5rem 1rem .5rem;
+	margin-top: 1rem;
 	clear: both;
 	font-family: inherit;
 	font-size: 14px;
@@ -192,7 +201,6 @@ p {
 }
 
 #file-send-btn{
-	display: none;
 	margin-top: 25px;
 	transition: ease 0.3s;
 }
