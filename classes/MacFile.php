@@ -43,12 +43,12 @@ class MacFile
 					$this->getMacArrayFromContent();
 				}
 				else{
-					throw new Exception('Не удалось прочесть содержимое файла "'.$file_name.'". Возможно он пуст.');
+					throw new \Exception('Не удалось прочесть содержимое файла". Возможно он пуст.');
 				}
 			}
 			else
 			{
-				throw new Exception('Невозможно прочесть файл "'.$file_name.'". Возможно он поврежден, защищиен от чтения или не существует.');
+				throw new \Exception('Невозможно прочесть файл". Возможно он поврежден, защищиен от чтения или не существует.');
 			}
 		}
 		else
@@ -79,7 +79,7 @@ class MacFile
 			$this->mac_array = array_unique($mac_array[0]);
 			//если адресов не найдено - кидаем исключение
 			if (count($this->mac_array) == 0){
-				throw new Exception('В файле "'.$file_name.'" не найдено на одного MAC-адреса.');
+				throw new \Exception('В файле "'.$file_name.'" не найдено на одного MAC-адреса.');
 			}
 		}
 	}
@@ -145,22 +145,23 @@ class MacFile
 	 * @return String
 	 **/
 	public function getMacContent() { 
-		return implode(PHP_EOL, array_map(array('MacFile', 'sanitizeMac'), $this->mac_array));
+		return implode(PHP_EOL, array_map(array($this, 'sanitizeMac'), $this->mac_array));
 	}
 
 	/**
 	 *  Метод создает файл с со списком mac-адресов, указанных без разделителей. Физический файл-донор уничтожается.
 	 *
 	 * @param String $file_name имя создаваемого файла
+	 * @see https://tech.yandex.ru/audience/doc/intro/data-requirements-docpage/
 	 **/
 	public function createFormattedMacFile($file_name) { 
 		if(file_put_contents($file_name, $this->getMacContent())){
-			unlink($this->name);
-			$this->name =  $file_name;
+			unlink($file_name);
+			$this->name =  basename($file_name);
 			return $this->name;
 		}
 		else{
-			throw new Exception('Невозможно записать файл "'.$file_name.'.');
+			throw new \Exception('Ошибка при конвертации файла.');
 		}
 	}
 };
