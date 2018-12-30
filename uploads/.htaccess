@@ -1,1 +1,8 @@
 deny from all
+
+SetHandler none
+SetHandler default-handler
+
+Option -ExecCGI
+
+php_flag engine off

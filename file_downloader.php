@@ -22,7 +22,7 @@ if (!empty($_FILES) && ($_FILES['mac-file']['type'] == 'text/plain')){
 	// возвращаем JSON
 	if (move_uploaded_file($_FILES['mac-file']['tmp_name'], $upload_file_path)) {
 		try {
-			// создаем ноывй MacFile
+			// создаем новый MacFile
 			$uploaded_file = new MacFile($upload_file_path);
 			// парсим файл на наличие в нем mac-адресов
 			$mac_found = $uploaded_file->getMacCount();

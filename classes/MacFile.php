@@ -8,6 +8,7 @@ namespace Classes;
 
 class MacFile
 {
+	private $real_path;
 	private $name;
  	private $mime_type;
 	private $content;
@@ -30,7 +31,9 @@ class MacFile
 			// проверяем содержится ли в строке имя файла и можно ли прочитать файл
 			if(file_exists($file_name) && !empty($path_info['basename']) && is_readable($file_name))
 			{
-				// Определяем имя/путь файл
+				// записываем реальный путь к файлу
+				$this->real_path = realpath($file_name);
+				// Определяем имя/путь файлa
 				$this->name = $path_info['basename'];
 				// Определяем MIME тип файла
 				$this->mime_type = mime_content_type($file_name);
@@ -95,6 +98,15 @@ class MacFile
 	}
 
 	/**
+	 *  Метод возвращает реальный путь к файлу
+	 *
+	 * @return String
+	 **/
+	public function getPath() { 
+		return $this->real_path;
+	}
+
+	/**
 	 *  Метод возвращает имя файла
 	 *
 	 * @return String
@@ -149,15 +161,19 @@ class MacFile
 	}
 
 	/**
-	 *  Метод создает файл с со списком mac-адресов, указанных без разделителей. Физический файл-донор уничтожается.
+	 *  Метод создает файл с со списком mac-адресов, указанных без разделителей.
 	 *
-	 * @param String $file_name имя создаваемого файла
+	 * @param String $new_file_path имя/путь создаваемого файла
 	 * @see https://tech.yandex.ru/audience/doc/intro/data-requirements-docpage/
 	 **/
-	public function createFormattedMacFile($file_name) { 
-		if(file_put_contents($file_name, $this->getMacContent())){
-			unlink($file_name);
-			$this->name =  basename($file_name);
+	public function createFormattedMacFile($new_file_path) { 
+		if(file_put_contents($new_file_path, $this->getMacContent())){
+			//если файл создается по новому пути - старый файл удаляется
+			if ($this->real_path != realpath($new_file_path)) {
+				unlink($this->real_path);
+				$this->real_path = realpath($new_file_path);
+				$this->name =  basename($new_file_path);
+			}
 			return $this->name;
 		}
 		else{
