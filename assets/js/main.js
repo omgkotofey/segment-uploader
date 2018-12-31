@@ -66,6 +66,7 @@ $(document).ready(function () {
 		function outputError(msg) {
 			// Response
 			var m = document.getElementById('error-message');
+			document.getElementById('error-message').classList.remove("hidden");
 			m.innerHTML = msg;
 		}
 
@@ -141,8 +142,13 @@ $(document).ready(function () {
 						returnedData = JSON.parse(responce);
 						if (returnedData['result'] == 'success'){
 							pBar.style.display = 'none';
-							sendBtn.classList.remove("hidden");
 							output('MAC-адреса: ' + returnedData['mac_count'] + ' шт.');
+							if (returnedData['mac_count'] > 1000) {
+								sendBtn.classList.remove("hidden");
+							}
+							else{
+								outputError('Для создания сегмента нужно более 1000 MAC-адресов');
+							}
 						}
 						else if (returnedData['result'] == 'error'){
 							outputError(returnedData['message']);
