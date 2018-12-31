@@ -1,16 +1,11 @@
 <?php 
 
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
-
 require_once 'vendor/autoload.php';
 
 use Classes\Config;
 use Classes\MacFile;
 
-// файл обязательно деолжен придти и быть текстовым
+// файл обязательно должен придти и быть текстовым
 if (!empty($_FILES) && ($_FILES['mac-file']['type'] == 'text/plain')){
 
 	// генерируем уникальное имя для загружаемого файла 
