@@ -36,6 +36,7 @@ $(document).ready(function () {
 		}
 
 		function invokeFileFialog(e) { 
+			document.getElementById('error-message').classList.add("hidden");
 			document.getElementById('file-upload').click();
 		}
 
@@ -47,6 +48,7 @@ $(document).ready(function () {
 			var fileDrag = document.getElementById('file-drag');
 			e.stopPropagation();
 			e.preventDefault();
+			document.getElementById('error-message').classList.add("hidden");
 			fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
 		}
 
