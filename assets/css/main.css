@@ -198,17 +198,19 @@ p {
 	background: #ffd85d;
 	border-color: #ffd85d;
 	cursor: pointer;
-}
-
-#file-send-btn{
-	margin-top: 25px;
 	transition: ease 0.3s;
 }
 
-#file-send-btn:hover{
+
+.uploader .btn:hover{
 	background-color: #fd0019;
 	border-color: #fd0019;
 	color: #fff;
+}
+
+
+#file-send-btn{
+	margin-top: 25px;
 }
 
 @media screen and (max-width: 600px){

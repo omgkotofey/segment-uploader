@@ -6,15 +6,17 @@ $(document).ready(function () {
 	function ekUpload() {
 		function Init() {
 
-			console.log("Upload Initialised");
-
+			
 			var fileSelect = document.getElementById('file-upload'),
 				fileDrag = document.getElementById('file-drag'),
-				fileRemove = document.getElementById('file-remove');
-
+				fileRemove = document.getElementById('file-remove'),
+				fileSelectButton = document.getElementById('file-upload-btn');
+			
 			fileSelect.addEventListener('change', fileSelectHandler, false);
+			fileDrag.addEventListener('click', removeFileDialog, false);
 			fileRemove.addEventListener('click', removeFile, false);
-
+			fileSelectButton.addEventListener('click', invokeFileFialog, false);
+			
 			// Is XHR2 available?
 			var xhr = new XMLHttpRequest();
 			if (xhr.upload) {
@@ -23,21 +25,28 @@ $(document).ready(function () {
 				fileDrag.addEventListener('dragleave', fileDragHover, false);
 				fileDrag.addEventListener('drop', fileSelectHandler, false);
 			}
+
+			console.log("Upload Initialised");
 		}
 
 		function removeFile(e) { 
 			e.stopPropagation();
 			e.preventDefault();
 			reloadForm();
-			
+		}
+
+		function invokeFileFialog(e) { 
+			document.getElementById('file-upload').click();
+		}
+
+		function removeFileDialog(e) { 
+			e.preventDefault();
 		}
 
 		function fileDragHover(e) {
 			var fileDrag = document.getElementById('file-drag');
-
 			e.stopPropagation();
 			e.preventDefault();
-
 			fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
 		}
 
@@ -68,6 +77,7 @@ $(document).ready(function () {
 			var m = document.getElementById('error-message');
 			document.getElementById('error-message').classList.remove("hidden");
 			m.innerHTML = msg;
+			reloadForm();
 		}
 
 		// Form reloading
@@ -147,7 +157,7 @@ $(document).ready(function () {
 								sendBtn.classList.remove("hidden");
 							}
 							else{
-								outputError('Для создания сегмента нужно более 1000 MAC-адресов');
+								outputError('Для создания сегмента файл должен содержать более 1000 уникальных MAC-адресов');
 							}
 						}
 						else if (returnedData['result'] == 'error'){
