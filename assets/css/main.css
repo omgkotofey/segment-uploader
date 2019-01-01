@@ -20,7 +20,7 @@ body {
 	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem;
+	padding: 0.5rem;
 	background: #32373c;
 }
 
@@ -88,7 +88,7 @@ p {
 	display: none !important;
 }
 
-.uploader #start i.fa {
+#file-drag-icon {
 	font-size: 50px;
 	margin-bottom: 1rem;
 	transition: all .2s ease-in-out;
@@ -128,16 +128,18 @@ p {
 	max-width: 100px;
 }
 
-
-
 .uploader #error-message {
 	display: block;
-	float: left;
-	clear: both;
 	width: 100%;
 	color: #fb0022;
+	max-width: 400px;
+	margin: 0 auto;
+	line-height: 1.5;
 }
 
+.uploader #error-message .fa{
+	margin-right: 5px;
+}
 
 .uploader progress,
 .uploader .progress {

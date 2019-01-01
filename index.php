@@ -25,7 +25,7 @@
 
         <label for="file-upload" id="file-drag">
             <div id="start">
-                <i class="fa fa-download" aria-hidden="true"></i>
+                <i id="file-drag-icon" class="fa fa-download" aria-hidden="true"></i>
                 <div>Выберите файл или перетащите его в это поле</div>
                 <div id="error-message" class="hidden"></div>
                 <span id="file-upload-btn" class="btn btn-primary">Выбрать файл</span>

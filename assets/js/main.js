@@ -76,7 +76,8 @@ $(document).ready(function () {
 			// Response
 			var m = document.getElementById('error-message');
 			document.getElementById('error-message').classList.remove("hidden");
-			m.innerHTML = msg;
+			m.innerHTML = '<i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i><br>' + msg;
+
 			reloadForm();
 		}
 
