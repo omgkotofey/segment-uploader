@@ -156,7 +156,7 @@ $(document).ready(function () {
 						if (returnedData['result'] == 'success'){
 							pBar.style.display = 'none';
 							output('MAC-адреса: ' + returnedData['mac_count'] + ' шт.');
-							if (returnedData['mac_count'] > 1000) {
+							if (returnedData['mac_count'] >= 1000) {
 								sendBtn.classList.remove("hidden");
 							}
 							else{
