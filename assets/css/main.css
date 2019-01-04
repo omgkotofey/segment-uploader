@@ -40,6 +40,7 @@ p {
 
 
 .uploader {
+	position: relative;
 	display: block;
 	clear: both;
 	margin: 0 auto;
@@ -48,23 +49,26 @@ p {
 }
 
 .uploader label {
-	float: left;
-	clear: both;
+	position: relative;
+	display: block;
 	width: 100%;
 	padding: 2rem 1.5rem;
 	text-align: center;
 	background: #fff;
 	border-radius: 7px;
 	border: 3px solid #eee;
-	transition: all .2s ease;
+	/* transition: all .2s ease; */
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	border-color: #ffd85d;
 }
 
-.uploader label:hover {
-	border-color: #ffd85d;
+.uploader label:not(:first-of-type) {
+	display: none;
+	position: relative;
+	left: 100%;
 }
 
 .uploader label.hover {
@@ -79,7 +83,6 @@ p {
 }
 
 .uploader #start {
-	float: left;
 	clear: both;
 	width: 100%;
 }
@@ -206,6 +209,12 @@ p {
 	transition: ease 0.3s;
 }
 
+.uploader .btn.disabled{
+	pointer-events: none;
+	background-color: #ccc;
+	color: #444;
+}
+
 
 .uploader .btn:hover{
 	background-color: #fd0019;
@@ -213,9 +222,26 @@ p {
 	color: #fff;
 }
 
-
-#file-send-btn{
+#segment-send-btn{
 	margin-top: 25px;
+}
+
+.uploader input[type='text']{
+	width: 100%;
+	max-width: 400px;
+	margin: 15px auto;
+	padding: 5px 8px;
+	border: 1px solid #999;
+	font-size: 14px;
+	clear: both;
+}
+
+.uploader input[type='text']:focus{
+	outline-color: #ffd569;
+}
+
+.uploader input[type='text']::placeholder{
+	color: #999;
 }
 
 @media screen and (max-width: 600px){

@@ -4,14 +4,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>Segment Easy Uploader - Загружай сегменты для сервиса Яндекс.Аудитории!</title>
     <meta name="description" content="Загружай сегменты из файлов, содержих MAC-адреса устройств, для сервиса Яндекс.Аудитории.">
-
+    
+    <title>Segment Easy Uploader - Загружай сегменты для сервиса Яндекс.Аудитории!</title>
+    
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
-
+    
+    <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 
@@ -19,7 +23,7 @@
     <h2>Загружай сегменты для Яндекс.Аудиторий!</h2>
     <p class="lead">Загрузи .txt файл <b>содержащий MAC-адреса устройств</b><br class="mob-hide">
         для конвертации их в новый сегмент</p>
-    <!-- Upload  -->
+    <!-- UPLOADER BOX  -->
     <form id="file-upload-form" action="file_downloader.php" class="uploader">
         <input id="file-upload" type="file" name="fileUpload" accept=".txt" />
 
@@ -42,7 +46,15 @@
                 </div>
             </div>
         </label>
-        <span id="file-send-btn" class="btn btn-primary hidden">Создать сегмент</span>
+        <label for="segment-name" id="segment-create">
+            <div id="start">
+                <i id="file-drag-icon" class="fa fa-pencil" aria-hidden="true"></i>
+                <div>Укажите название для создаваемого сегмента</div>
+                <input id="segment-name" type="text" name="segmentName" placeholder='Новый сегмент'/>
+                <span id="segment-create-btn" class="btn btn-primary disabled" disabled>Создать сегмент</span>
+            </div>
+        </label>
+        <span id="segment-send-btn" class="btn btn-primary hidden">Продолжить</span>
     </form>
 </body>
 

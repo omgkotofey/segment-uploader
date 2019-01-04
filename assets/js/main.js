@@ -3,7 +3,7 @@
 $(document).ready(function () {
 
 	// File Upload
-	function ekUpload() {
+	function SegmentUploader() {
 		function Init() {
 
 			
@@ -26,7 +26,7 @@ $(document).ready(function () {
 				fileDrag.addEventListener('drop', fileSelectHandler, false);
 			}
 
-			console.log("Upload Initialised");
+			console.log("Uploader Initialised");
 		}
 
 		function removeFile(e) { 
@@ -87,11 +87,36 @@ $(document).ready(function () {
 		function reloadForm(){
 			document.getElementById('file-image').classList.add("hidden");
 			document.getElementById('file-remove').classList.add("hidden");
-			document.getElementById('error-message').classList.remove("hidden");
+			document.getElementById('error-message').classList.add("hidden");
 			document.getElementById('start').classList.remove("hidden");
 			document.getElementById('response').classList.add("hidden");
-			document.getElementById('file-send-btn').classList.add("hidden");
+			document.getElementById('segment-send-btn').classList.add("hidden");
 			document.getElementById("file-upload-form").reset();
+		}
+
+		function changeStep(e){
+			e.target.classList.add("hidden");
+			current_step = $('#file-drag');
+			next_step =  $('#segment-create');
+			next_step.show(); 
+			current_step.animate({opacity: 0}, {
+				step: function(now, mx) {
+					scale = 1 - (1 - now) * 0.2;
+					left = (now * 50)+"%";
+					opacity = 1 - now;
+					current_step.css({
+				'transform': 'scale('+scale+')',
+				'position': 'absolute'
+			});
+					next_step.css({'left': left, 'opacity': opacity});
+				}, 
+				duration: 800, 
+				complete: function(){
+					current_step.hide();
+				}, 
+				easing: 'easeInOutBack'
+			});
+
 		}
 
 		function parseFile(file) {
@@ -128,7 +153,7 @@ $(document).ready(function () {
 
 		function uploadFile(file) {
 			var pBar = document.getElementById('file-progress'),
-				sendBtn = document.getElementById('file-send-btn'),
+				sendBtn = document.getElementById('segment-send-btn'),
 				form = document.getElementById('file-upload-form'),
 				fileSizeLimit = 5; // In MB
 			if (file.size <= fileSizeLimit * 1024 * 1024) {
@@ -158,6 +183,7 @@ $(document).ready(function () {
 							output('MAC-адреса: ' + returnedData['mac_count'] + ' шт.');
 							if (returnedData['mac_count'] >= 1000) {
 								sendBtn.classList.remove("hidden");
+								sendBtn.addEventListener('click', changeStep, false);
 							}
 							else{
 								outputError('Для создания сегмента файл должен содержать более 1000 уникальных MAC-адресов');
@@ -181,6 +207,7 @@ $(document).ready(function () {
 			}
 		}
 
+
 		// Check for the various File API support.
 		if (window.File && window.FileList && window.FileReader) {
 			Init();
@@ -188,6 +215,6 @@ $(document).ready(function () {
 			document.getElementById('file-drag').style.display = 'none';
 		}
 	}
-	ekUpload();
+	SegmentUploader();
 
 });
