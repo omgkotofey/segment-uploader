@@ -1,4 +1,4 @@
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 html,
@@ -186,6 +186,7 @@ p {
 }
 
 .uploader .btn {
+	position: relative;
 	display: inline-block;
 	min-width: 150px;
 	margin-top: 1rem;
@@ -215,7 +216,6 @@ p {
 	color: #444;
 }
 
-
 .uploader .btn:hover{
 	background-color: #fd0019;
 	border-color: #fd0019;
@@ -242,6 +242,14 @@ p {
 
 .uploader input[type='text']::placeholder{
 	color: #999;
+}
+
+#segment-name-invalid{
+	position: relative;
+	top: -10px;
+	display: block;
+	font-size: 12px;
+	color: #fd0019;
 }
 
 @media screen and (max-width: 600px){

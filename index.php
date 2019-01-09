@@ -25,7 +25,7 @@
         для конвертации их в новый сегмент</p>
     <!-- UPLOADER BOX  -->
     <form id="file-upload-form" action="file_downloader.php" class="uploader">
-        <input id="file-upload" type="file" name="fileUpload" accept=".txt" />
+        <input id="file-upload" type="file" name="fileUpload" accept=".txt"/>
 
         <label for="file-upload" id="file-drag">
             <div id="start">
@@ -50,8 +50,12 @@
             <div id="start">
                 <i id="file-drag-icon" class="fa fa-pencil" aria-hidden="true"></i>
                 <div>Укажите название для создаваемого сегмента</div>
-                <input id="segment-name" type="text" name="segmentName" placeholder='Новый сегмент'/>
+                <input id="segment-name" type="text" name="segmentName"  placeholder='Новый сегмент'/>
+                <span id="segment-name-invalid" class="hidden">Имя сегмента содержит недопустимые символы</span>
                 <span id="segment-create-btn" class="btn btn-primary disabled" disabled>Создать сегмент</span>
+                <div class="segment-spinner-wrapper">
+                    <i id="segment-spinner" class="hidden fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+                </div>
             </div>
         </label>
         <span id="segment-send-btn" class="btn btn-primary hidden">Продолжить</span>

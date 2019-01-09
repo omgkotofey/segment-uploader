@@ -1,37 +1,42 @@
 <?php
 
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
 require_once 'vendor/autoload.php';
 
 use \Classes\Config;
 use \Classes\MacFile;
 use \Classes\AudienceApi;
 
-// файл обязательно должен придти $POST запрос
-if (!empty($_POST) && (array_key_exists('mac_file_name', $_POST))){
+// обязательно должен придти $POST запрос верного формата
+if (!empty($_POST['mac_file_name']) && !empty($_POST['segment_name'])){
 
-	// определяем имя файла, с которым будем работать
+	// формируем полное имя файла, с которым будем работать
 	$mac_file_name = Config::get('UPLOAD_DIR') . strip_tags($_POST['mac_file_name']);
 
 	if (file_exists($mac_file_name)) {
 		try {
-			// создаем новый MacFile
-			$mac_file = new MacFile($mac_file_name);
-
-			$responce_upload = AudienceApi::upload_file_to_api($mac_file_name);
-			$new_segment_id =  $responce_upload['segment']['id'];
-			$responce_confirm = confirm_segment($new_segment_id, uniqid());
-			print_r($responce);
+            // создаем экземпляр API
+            $ya_audience_api = new AudienceApi(Config::get('YANDEX_OAUTH_TOKEN'));
+			// создаем MacFile, скрипт продолжит работу только при успешном создании файла
+            $mac_file = new MacFile($mac_file_name);
+            // посылаем запрос к API, загружающий файл как новый сегмент
+            $responce = $ya_audience_api->create_segment($mac_file, strip_tags($_POST['segment_name']));
+            echo json_encode(['result' => 'success', 'message' => 'Сегмент создан успешно', 'responce' => $responce]);
 		} catch (\Exception $e) {
 			echo json_encode(['result' => 'error', 'message' => $e->getMessage()]);
 		}
 	} 
 	else {
-		echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Загрузите файл повторно.']);
+		echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Не обнаружен файл сегмента. Загрузите файл повторно.']);
 	}
 
 	
 }
 else{
-	echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Не указано имя файла.']);
+	echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Не указано имя сегмента.']);
 }
 ?>
