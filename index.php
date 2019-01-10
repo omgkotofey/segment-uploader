@@ -53,9 +53,9 @@
                 <input id="segment-name" type="text" name="segmentName"  placeholder='Новый сегмент'/>
                 <span id="segment-name-invalid" class="hidden">Имя сегмента содержит недопустимые символы</span>
                 <span id="segment-create-btn" class="btn btn-primary disabled" disabled>Создать сегмент</span>
-                <div class="segment-spinner-wrapper">
-                    <i id="segment-spinner" class="hidden fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
-                </div>
+                <p id="segment-please-wait" class="hidden pulsate">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i> Подождите, операция выполняется...
+                </p>
             </div>
         </label>
         <span id="segment-send-btn" class="btn btn-primary hidden">Продолжить</span>

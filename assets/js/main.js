@@ -228,7 +228,7 @@
 				var segmentName = $('#segment-name').val();
 				if (segmentName !== '') {
 					document.getElementById('segment-create-btn').classList.add("hidden");
-					document.getElementById('segment-spinner').classList.remove("hidden");
+					document.getElementById('segment-please-wait').classList.remove("hidden");
 					var mac_file_name = $('#segment-create').data('filename');
 					$.ajax({
 						type: 'POST',
