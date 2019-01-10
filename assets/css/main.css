@@ -185,7 +185,7 @@ p {
 	color: #5f6982;
 }
 
-.uploader .btn {
+.btn {
 	position: relative;
 	display: inline-block;
 	min-width: 150px;
@@ -210,13 +210,13 @@ p {
 	transition: ease 0.3s;
 }
 
-.uploader .btn.disabled{
+.btn.disabled{
 	pointer-events: none;
 	background-color: #ccc;
 	color: #444;
 }
 
-.uploader .btn:hover{
+.btn:hover{
 	background-color: #fd0019;
 	border-color: #fd0019;
 	color: #fff;
@@ -277,6 +277,20 @@ p {
     100% { 
         opacity: 0.5;
     }
+}
+
+#popup {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	background: rgba(53,58,62,0.9);
+	z-index: 99;
 }
 
 @media screen and (max-width: 600px){

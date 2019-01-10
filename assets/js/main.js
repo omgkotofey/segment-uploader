@@ -237,8 +237,7 @@
 						success: function (responce) {
 							returnedData = JSON.parse(responce);
 							if (returnedData['result'] == 'success'){
-								//сегмент создан
-								console.log(returnedData);
+								document.getElementById('popup').classList.remove("hidden");
 							}
 							else if (returnedData['result'] == 'error'){
 								outputError(returnedData['message']);
