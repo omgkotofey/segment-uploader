@@ -213,13 +213,19 @@
 
 			function validateSegmentName(e) {  
 				var sermentName = e.target.value;
-				var re = new RegExp('^[а-яА-Яa-zA-ZёЁ0-9-]{1,30}$');
-				if(re.test(sermentName)){
-					document.getElementById('segment-name-invalid').classList.add("hidden");
-					document.getElementById('segment-create-btn').classList.remove("disabled");
+				if (sermentName){
+					var re = new RegExp('^[а-яА-Яa-zA-ZёЁ0-9-]{1,30}$');
+					if(re.test(sermentName)){
+						document.getElementById('segment-name-invalid').classList.add("hidden");
+						document.getElementById('segment-create-btn').classList.remove("disabled");
+					}
+					else{
+						document.getElementById('segment-name-invalid').classList.remove("hidden");
+						document.getElementById('segment-create-btn').classList.add("disabled");
+					}
 				}
 				else{
-					document.getElementById('segment-name-invalid').classList.remove("hidden");
+					document.getElementById('segment-name-invalid').classList.add("hidden");
 					document.getElementById('segment-create-btn').classList.add("disabled");
 				}
 			}
