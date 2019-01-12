@@ -131,20 +131,44 @@ p {
 	max-width: 100px;
 }
 
-.uploader #error-message {
-	display: block;
-	width: 100%;
+.error-content {
+    width: 300px;
 	color: #fb0022;
-	max-width: 400px;
-	margin: 20px auto 0;
 	line-height: 1.5;
 	border-radius: 5px;
-	padding: 20px;
 	background-color: #fdf3f2;
 }
 
-.uploader #error-message .fa{
-	font-size: 50px;
+.error-header,
+.error-body{
+    padding: 20px;
+}
+
+.error-header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9dfdc;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.error-header i{
+    color: #000;
+    cursor: pointer;
+}
+
+.error-content h3{
+    margin: 0px;
+    font-size: 18px;
+    line-height: 0.75;
+}
+
+#error-message-text{
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #000;
 }
 
 .uploader progress,
@@ -320,7 +344,7 @@ p {
 	}			
 }
 
-#popup {
+.popup {
 	position: absolute;
 	left: 0;
 	top: 0;

@@ -46,12 +46,12 @@ class MacFile
 					$this->getMacArrayFromContent();
 				}
 				else{
-					throw new \Exception('Не удалось прочесть содержимое файла". Возможно он пуст.');
+					throw new \Exception('Не удалось прочесть содержимое файла. Возможно он пуст.');
 				}
 			}
 			else
 			{
-				throw new \Exception('Невозможно прочесть файл". Возможно он поврежден, защищиен от чтения или не существует.');
+				throw new \Exception('Невозможно прочесть файл. Возможно он поврежден, защищиен от чтения или не существует.');
 			}
 		}
 		else
@@ -82,7 +82,7 @@ class MacFile
 			$this->mac_array = array_unique($mac_array[0]);
 			//если адресов не найдено - кидаем исключение
 			if (count($this->mac_array) == 0){
-				throw new \Exception('В файле "'.$file_name.'" не найдено на одного MAC-адреса.');
+				throw new \Exception('В файле не найдено на одного MAC-адреса.');
 			}
 		}
 	}

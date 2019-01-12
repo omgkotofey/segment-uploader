@@ -12,14 +12,16 @@
 					fileRemove = document.getElementById('file-remove'),
 					segmentName = document.getElementById('segment-name'),
 					fileSelectButton = document.getElementById('file-upload-btn');
-					segmentCreateButton = document.getElementById('segment-create-btn');
+                    segmentCreateButton = document.getElementById('segment-create-btn');
+                    errorCloseButton = document.getElementById('popup-error-close');
 				
 				fileSelect.addEventListener('change', fileSelectHandler, false);
 				fileDrag.addEventListener('click', removeFileDialog, false);
 				fileRemove.addEventListener('click', removeFile, false);
 				fileSelectButton.addEventListener('click', invokeFileFialog, false);
 				segmentName.addEventListener('input', validateSegmentName, false);
-				segmentCreateButton.addEventListener('click', createSegment, false);
+                segmentCreateButton.addEventListener('click', createSegment, false);
+                errorCloseButton.addEventListener('click', closePopup, false);
 				
 				// Is XHR2 available?
 				var xhr = new XMLHttpRequest();
@@ -37,10 +39,14 @@
 				e.stopPropagation();
 				e.preventDefault();
 				reloadForm();
+            }
+            
+			function closePopup() {
+				document.getElementById('popup-error').classList.add("hidden");
 			}
 	
 			function invokeFileFialog() { 
-				document.getElementById('error-message').classList.add("hidden");
+				document.getElementById('popup-error').classList.add("hidden");
 				document.getElementById('file-upload').click();
 			}
 	
@@ -52,7 +58,7 @@
 				var fileDrag = document.getElementById('file-drag');
 				e.stopPropagation();
 				e.preventDefault();
-				document.getElementById('error-message').classList.add("hidden");
+				document.getElementById('popup-error').classList.add("hidden");
 				fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
 			}
 	
@@ -80,18 +86,16 @@
 			// Output Error Message
 			function outputError(msg) {
 				// Response
-				var m = document.getElementById('error-message');
-				document.getElementById('error-message').classList.remove("hidden");
-				m.innerHTML = '<i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i><br>' + msg;
-	
-				reloadForm();
+				var m = document.getElementById('error-message-text');
+				document.getElementById('popup-error').classList.remove("hidden");
+				m.innerHTML = msg;
+                reloadForm();
 			}
 	
 			// Form reloading
 			function reloadForm(){
 				document.getElementById('file-image').classList.add("hidden");
 				document.getElementById('file-remove').classList.add("hidden");
-				document.getElementById('error-message').classList.add("hidden");
 				document.getElementById('start').classList.remove("hidden");
 				document.getElementById('response').classList.add("hidden");
 				document.getElementById('segment-send-btn').classList.add("hidden");
@@ -130,7 +134,7 @@
 				if (isTXT) {
 					document.getElementById('start').classList.add("hidden");
 					document.getElementById('response').classList.remove("hidden");
-					document.getElementById('error-message').classList.add("hidden");
+					document.getElementById('popup-error').classList.add("hidden");
 					document.getElementById('file-image').classList.remove("hidden");
 					document.getElementById('file-image').src = 'assets/images/icon-txt.png';
 					document.getElementById('file-remove').classList.remove("hidden");
@@ -194,6 +198,7 @@
 								}
 							}
 							else if (returnedData['result'] == 'error'){
+                                console.log(111);
 								outputError(returnedData['message']);
 							}
 							else{
@@ -243,7 +248,7 @@
 						success: function (responce) {
 							returnedData = JSON.parse(responce);
 							if (returnedData['result'] == 'success'){
-								document.getElementById('popup').classList.remove("hidden");
+								document.getElementById('popup-success').classList.remove("hidden");
 							}
 							else if (returnedData['result'] == 'error'){
 								outputError(returnedData['message']);

@@ -28,8 +28,6 @@ if (!empty($_POST['mac_file_name']) && !empty($_POST['segment_name'])){
 	else {
 		echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Не обнаружен файл сегмента. Загрузите файл повторно.']);
 	}
-
-	
 }
 else{
 	echo json_encode(['result' => 'error', 'message' => 'Невозможно продолжить. Не указано имя сегмента.']);

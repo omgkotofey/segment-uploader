@@ -20,11 +20,25 @@
 </head>
 
 <body>
-    <div id="popup" class="hidden">
+    <div id="popup-success" class="popup hidden">
         <a href="https://audience.yandex.ru/" target="_blank" rel="noreferrer"><img src="assets/images/audience.png"></a>
         <h2>Сегмент создан успешно!</h2>
         <p class="lead">Новый сегмент доступен в сервисе Яндекс.Аудиторий.<br class="mob-hide"> Он будет готов к работе после обработки данных сегмента сервисом.</p>
         <span class="btn btn-primary" onClick="window.location.reload()">Загрузить еще</span>
+    </div>
+    <div id="popup-error" class="popup hidden">
+        <div class="error-content">
+            <div class="error-header">
+                <h3>Ошибка</h3>
+                <i class="fa fa-times" aria-hidden="true" id="popup-error-close"></i>
+            </div>
+            <div class="error-body">
+                <div id="error-message">
+                    <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                    <p id="error-message-text"></p>
+                </div>
+            </div>
+        </div>
     </div>
     <h2>Загружай сегменты для Яндекс.Аудиторий!</h2>
     <p class="lead">Загрузи .txt файл <b>содержащий MAC-адреса устройств</b><br class="mob-hide">
@@ -37,7 +51,6 @@
             <div id="start">
                 <i id="file-drag-icon" class="fa fa-download" aria-hidden="true"></i>
                 <div>Выберите файл или перетащите его в это поле</div>
-                <div id="error-message" class="hidden"></div>
                 <span id="file-upload-btn" class="btn btn-primary">Выбрать файл</span>
             </div>
             <div id="file-wrapper">
