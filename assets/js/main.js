@@ -87,7 +87,8 @@
 			function outputError(msg) {
 				// Response
 				var m = document.getElementById('error-message-text');
-				document.getElementById('popup-error').classList.remove("hidden");
+                document.getElementById('popup-error').classList.remove("hidden");
+                document.getElementById('error-content').classList.add("slideDown");
 				m.innerHTML = msg;
                 reloadForm();
 			}

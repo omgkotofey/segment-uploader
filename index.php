@@ -27,7 +27,7 @@
         <span class="btn btn-primary" onClick="window.location.reload()">Загрузить еще</span>
     </div>
     <div id="popup-error" class="popup hidden">
-        <div class="error-content">
+        <div id="error-content">
             <div class="error-header">
                 <h3>Ошибка</h3>
                 <i class="fa fa-times" aria-hidden="true" id="popup-error-close"></i>
